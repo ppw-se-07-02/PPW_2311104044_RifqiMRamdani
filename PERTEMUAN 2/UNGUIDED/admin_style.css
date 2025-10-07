@@ -1,0 +1,105 @@
+/* Atur ulang gaya dasar */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f5;
+    color: #333;
+    /* Aktifkan Grid pada body untuk mengatur 3 baris utama (Header, Konten+Sidebar, Footer) */
+    display: grid;
+    /* Mendefinisikan 3 baris: Header, Main-Wrapper, Footer */
+    grid-template-rows: auto 1fr auto; 
+    min-height: 100vh; /* Memastikan layout mengisi seluruh tinggi viewport */
+}
+
+/* 1. HEADER */
+.admin-header {
+    grid-row: 1; /* Menempati baris pertama */
+    background-color: #004d99;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 5px solid #003366;
+}
+
+/* 2. MAIN WRAPPER (Area Konten dan Menu) */
+.main-wrapper {
+    grid-row: 2; /* Menempati baris kedua (area utama) */
+    display: grid;
+    /* Mendefinisikan 2 kolom: Menu (lebar tetap/kecil) dan Konten (sisa lebar) */
+    grid-template-columns: 250px 1fr; 
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 2A. SIDEBAR/MENU */
+.admin-menu {
+    grid-column: 1; /* Menempati kolom pertama */
+    padding: 20px;
+    background-color: #e9ecef; /* Warna latar belakang menu */
+    border-right: 1px solid #ccc;
+}
+
+.admin-menu h2 {
+    color: #004d99;
+    margin-top: 0;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.admin-menu ul {
+    list-style: none; /* Hilangkan bullet */
+    padding: 0;
+    margin-top: 10px;
+}
+
+.admin-menu li a {
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: 5px;
+    text-decoration: none;
+    color: #333;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.admin-menu li a:hover {
+    background-color: #004d99;
+    color: white;
+}
+
+.admin-menu li a.logout {
+    color: #dc3545; /* Merah untuk Logout */
+    font-weight: bold;
+}
+
+.admin-menu li a.logout:hover {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* 2B. KONTEN DINAMIS */
+.admin-content {
+    grid-column: 2; /* Menempati kolom kedua */
+    padding: 30px;
+}
+
+.admin-content h2 {
+    color: #333;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+
+/* 3. FOOTER */
+.admin-footer {
+    grid-row: 3; /* Menempati baris ketiga */
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 20px;
+}

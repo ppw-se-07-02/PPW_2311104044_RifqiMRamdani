@@ -1,0 +1,177 @@
+/* Atur ulang gaya dasar */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Warna latar belakang umum */
+    color: #333;
+}
+
+/* Gaya Header (Bagian atas) */
+header {
+    background-color: #004d99; /* Biru tua */
+    color: white;
+    padding: 15px 30px;
+    display: flex; /* Mengatur item secara horizontal */
+    justify-content: space-between; /* Memisahkan logo dan navigasi */
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+nav a:hover {
+    background-color: #003366;
+}
+
+/* Kontainer Utama untuk Layout 3 Kolom */
+.container {
+    display: flex; /* Mengaktifkan Flexbox untuk 3 kolom */
+    max-width: 1200px;
+    margin: 20px auto; /* Pusatkan konten */
+    padding: 0 20px;
+    gap: 20px; /* Jarak antar kolom */
+}
+
+/* Kolom Kiri: Artikel Populer (Sidebar) */
+.sidebar-left {
+    flex: 1; /* Ambil 1 bagian proporsi lebar */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.sidebar-left h2 {
+    color: #004d99;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+.sidebar-left ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-left li {
+    padding: 8px 0;
+    border-bottom: 1px dotted #eee;
+}
+
+.sidebar-left li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.sidebar-left li a:hover {
+    color: #ff6600;
+}
+
+/* Kolom Tengah: Konten Utama */
+.main-content {
+    flex: 3; /* Ambil 3 bagian proporsi lebar (Lebih lebar) */
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.main-content h1 {
+    color: #004d99;
+    margin-top: 0;
+    border-bottom: 3px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+
+.section-kami {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.visi-kami, .layanan-kami {
+    flex: 1;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.visi-kami {
+    background-color: #c00; /* Merah */
+}
+
+.layanan-kami {
+    background-color: #007bff; /* Biru terang */
+}
+
+.section-kami h3 {
+    margin-top: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    padding-bottom: 5px;
+}
+
+/* Kolom Kanan: Promosi Spesial (Sidebar) */
+.sidebar-right {
+    flex: 1; /* Ambil 1 bagian proporsi lebar */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.sidebar-right h2 {
+    color: #ff6600; /* Oranye */
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+.promo-box {
+    color: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.promo-box h4 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.promo-box p {
+    margin: 5px 0 0;
+    font-size: 14px;
+}
+
+.blue {
+    background-color: #007bff;
+}
+.green {
+    background-color: #28a745;
+}
+.red {
+    background-color: #dc3545;
+}
+
+
+/* Gaya Footer (Bagian bawah) */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 20px;
+}
