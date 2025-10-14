@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toko Online | Batik Nusantara</title>
+  <style>
+    * {margin: 0; padding: 0; box-sizing: border-box;}
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f4ff;
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(90deg, #7a2de3, #d11ee0);
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    nav {
+      background-color: #d11ee0;
+      text-align: center;
+      padding: 10px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    nav a:hover, nav a.active {
+      text-decoration: underline;
+    }
+
+    /* ===== Banner Full Width dengan Slide CSS ===== */
+    .banner {
+      width: 100vw;
+      height: 300px;
+      position: relative;
+      overflow: hidden;
+      border-top: 4px solid #ff00ff;
+    }
+
+    .banner img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      animation: slideBanner 12s infinite;
+    }
+
+    .banner img:nth-child(1) { animation-delay: 0s; }
+    .banner img:nth-child(2) { animation-delay: 4s; }
+    .banner img:nth-child(3) { animation-delay: 8s; }
+
+    @keyframes slideBanner {
+      0% {opacity: 0;}
+      10% {opacity: 1;}
+      30% {opacity: 1;}
+      40% {opacity: 0;}
+      100% {opacity: 0;}
+    }
+
+    /* ===== PRODUK ===== */
+    h2 {
+      text-align: center;
+      margin-top: 30px;
+      color: #4a148c;
+    }
+
+    .produk-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 30px;
+    }
+
+    .produk {
+      background: white;
+      border-radius: 10px;
+      width: 200px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      padding: 10px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .produk:hover {
+      transform: translateY(-5px);
+    }
+
+    .produk img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .produk h4 {
+      margin: 10px 0 5px;
+      font-size: 1em;
+    }
+
+    .produk p {
+      margin: 0;
+      color: #888;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #7a2de3;
+      color: white;
+      padding: 30px 20px;
+      margin-top: 40px;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-around;
+      max-width: 1200px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+
+    .footer-section {
+      padding: 10px;
+      min-width: 180px;
+    }
+
+    .footer-section h4 {
+      border-bottom: 2px solid #d11ee0;
+      padding-bottom: 5px;
+      margin-bottom: 10px;
+    }
+
+    .footer-section p, .footer-section a {
+      color: white;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 5px;
+      font-size: 0.9em;
+    }
+
+    .footer-section a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.3);
+      padding-top: 15px;
+      margin-top: 20px;
+      font-size: 0.8em;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      header {font-size: 22px; padding: 15px;}
+      .banner {height: 200px;}
+      .produk {width: 45%;}
+    }
+
+    @media (max-width: 480px) {
+      .produk {width: 90%;}
+      nav a {display: block; margin: 8px 0;}
+    }
+  </style>
+</head>
+<body>
+
+  <header>Batik Nusantara</header>
+
+  <nav>
+    <a href="index.html" class="active">Beranda</a>
+    <a href="produk.html">Produk</a>
+    <a href="member.html">Member</a>
+    <a href="login.html">Login</a>
+  </nav>
+
+  <!-- ===== Banner Slide Tanpa JavaScript ===== -->
+  <div class="banner">
+    <img src="Image/OIP.webp" alt="Banner 1">
+    <img src="Image/banner2.jpg" alt="Banner 2">
+    <img src="Image/banner3.jpg" alt="Banner 3">
+  </div>
+
+  <h2>Rekomendasi Produk</h2>
+  <div class="produk-container">
+    <div class="produk">
+      <img src="Image/produk1.jpg" alt="Hijab Batik Semi Sutra Coklat">
+      <h4>Hijab Batik Semi Sutra Aurora Olive Heritage</h4>
+      <p>Rp89.999</p>
+    </div>
+    <div class="produk">
+      <img src="Image/produk2.jpg" alt="Hijab Batik Semi Sutra Hitam">
+      <h4>Hijab Batik Semi Sutra Sagara Golden Serenity</h4>
+      <p>Rp89.999</p>
+    </div>
+    <div class="produk">
+      <img src="Image/produk3.jpg" alt="Hijab Putih">
+      <h4>Hijab Batik Semi Sutra Luna Ivory Grace</h4>
+      <p>Rp89.999</p>
+    </div>
+    <div class="produk">
+      <img src="Image/produk4.jpg" alt="Hijab Polos Coklat">
+      <h4>Hijab Batik Semi Sutra Choco Royal Essence</h4>
+      <p>Rp89.999</p>
+    </div>
+    <div class="produk">
+      <img src="Image/produk5.jpg" alt="Hijab Polos Hitam">
+      <h4>Hijab Batik Semi Sutra Noir Batik Majesty</h4>
+      <p>Rp89.999</p>
+    </div>
+    <div class="produk">
+      <img src="Image/produk6.jpg" alt="Hijab Motif Batik Ungu">
+      <h4>Hijab Batik Semi Sutra Violet Harmony Bloom</h4>
+      <p>Rp89.999</p>
+    </div>
+  </div>
+
+  <h2>Pilihan Lainnya untuk Anda</h2>
+  <div class="produk-container">
+    <div class="produk">
+      <img src="Image/produk7.jpg" alt="Kemeja Batik Pria Parang">
+      <h4>Kemeja Batik Pria Lengan Panjang Parang</h4>
+      <p>Rp199.999</p>
+    </div>
+    <div class="produk">
+      <img src="Image/produk8.jpg" alt="Dress Batik Wanita Modern">
+      <h4>Dress Batik Wanita Klasik Megamendung</h4>
+      <p>Rp249.999</p>
+    </div>
+    <div class="produk">
+      <img src="Image/produk9.jpg" alt="Tas Selempang Batik">
+      <h4>Tas Selempang Kanvas Motif Kawung</h4>
+      <p>Rp449.999</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Questions Categories</h4>
+        <a href="#">Cara Pemesanan</a>
+        <a href="#">Kebijakan Pengembalian</a>
+        <a href="#">Status Pengiriman</a>
+        <a href="#">FAQ Umum</a>
+      </div>
+
+      <div class="footer-section">
+        <h4>Informasi Toko</h4>
+        <a href="tentang.html">Tentang Kami</a>
+        <a href="kontak.html">Hubungi Kami</a>
+        <a href="syarat.html">Syarat & Ketentuan</a>
+        <a href="karir.html">Karir</a>
+      </div>
+
+      <div class="footer-section">
+        <h4>Follow Us</h4>
+        <p>Ikuti kami di media sosial:</p>
+        <a href="#" style="display:inline; margin-right: 10px;">Facebook (f)</a>
+        <a href="#" style="display:inline; margin-right: 10px;">Instagram (@)</a>
+        <a href="#" style="display:inline;">Twitter (X)</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2025 Pemrograman Web - Rifqi Ramdani | Semua Hak Dilindungi.
+    </div>
+  </footer>
+
+</body>
+</html>
+ kepada pengguna.
