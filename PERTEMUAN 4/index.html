@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Batik Nusantara - Beranda</title>
+
+  <!-- Google Font: Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap CSS (CDN) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    /* ----- Basic ----- */
+    :root{
+      --purple-500: #7a2de3;
+      --purple-700: #4a148c;
+      --accent: #d11ee0;
+      --muted-bg: #f8f4ff;
+      --soft-pink: #ffd7ff;
+    }
+    html,body{height:100%;}
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--muted-bg);
+      color: #222;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+    a { text-decoration: none; }
+
+    /* ----- NAVBAR ----- */
+    .navbar {
+      background: linear-gradient(90deg, var(--purple-500), var(--accent));
+    }
+    .navbar .navbar-brand {
+      font-weight: 700;
+      color: #fff !important;
+      letter-spacing: .2px;
+    }
+    .navbar .nav-link {
+      color: rgba(255,255,255,0.95) !important;
+      font-weight: 500;
+    }
+    .navbar .nav-link:hover {
+      color: var(--soft-pink) !important;
+      text-decoration: underline;
+    }
+    .navbar.shadow-modern {
+      box-shadow: 0 6px 18px rgba(122,45,227,0.12);
+    }
+    .btn-outline-light.custom {
+      border-color: rgba(255,255,255,0.25);
+      color: #fff !important;
+    }
+    .navbar-toggler {
+      border-color: rgba(255,255,255,0.35);
+    }
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255,255,255,0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    /* cart badge */
+    .cart-badge {
+      position: relative;
+      display: inline-block;
+    }
+    .cart-badge .badge-count {
+      position: absolute;
+      top: -6px;
+      right: -10px;
+      font-size: 0.65rem;
+      background: #ff4d94;
+      color: #fff;
+      border-radius: 999px;
+      padding: 0.18rem 0.35rem;
+      font-weight:700;
+    }
+
+    /* ----- HERO / BANNER ----- */
+    .carousel .carousel-item img {
+      height: 420px;
+      object-fit: cover;
+      width:100%;
+    }
+    @media (max-width:768px){
+      .carousel .carousel-item img { height: 220px; }
+    }
+    .hero-overlay {
+      background: linear-gradient(180deg, rgba(0,0,0,0.12), rgba(0,0,0,0.08));
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    /* ----- PRODUCTS ----- */
+    .produk-card {
+      border: none;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform .25s ease, box-shadow .25s ease;
+      background: #fff;
+      box-shadow: 0 6px 18px rgba(4,4,4,0.06);
+    }
+    .produk-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(4,4,4,0.09);
+    }
+    .produk-card img {
+      height: 200px;
+      object-fit: cover;
+      width:100%;
+    }
+    .produk-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #2b1b51;
+      min-height: 44px;
+    }
+    .price {
+      color: var(--purple-700);
+      font-weight: 700;
+    }
+    .btn-beli {
+      background: linear-gradient(90deg, var(--purple-500), var(--accent));
+      border: none;
+      color: #fff;
+      font-weight: 600;
+      border-radius: 8px;
+      padding: .45rem .8rem;
+      transition: transform .12s ease;
+    }
+    .btn-beli:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(122,45,227,0.12); }
+
+    /* ----- FOOTER ----- */
+    footer {
+      background: linear-gradient(180deg, var(--purple-700), rgba(74,20,140,0.95));
+      color: #fff;
+      margin-top: 40px;
+    }
+    .footer-section h5 { color: #fff; font-weight: 700; }
+    .footer-bottom {
+      background: rgba(255,255,255,0.04);
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
+
+    /* ----- Tiny helpers ----- */
+    .pill {
+      display:inline-block;
+      background: rgba(122,45,227,0.08);
+      color: var(--purple-700);
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight:600;
+    }
+
+    /* Modal product image */
+    .modal-product-img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 576px){
+      .produk-card img { height: 160px; }
+      .produk-title { min-height: 36px; font-size: 0.9rem; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg shadow-modern sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Batik Nusantara</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain" aria-controls="navMain" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navMain">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Beranda</a></li>
+          <li class="nav-item"><a class="nav-link" href="produk.html">Produk</a></li>
+          <li class="nav-item"><a class="nav-link" href="member.html">Member</a></li>
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="keranjang.html" id="cartLink">
+              <span class="me-2">🛒</span>
+              <span>Keranjang</span>
+              <span class="cart-badge ms-2">
+                <span id="cartCount" class="badge-count">0</span>
+              </span>
+            </a>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
+          <li class="nav-item ms-2"><a class="btn btn-outline-light custom" href="login.html">Login</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO / BANNER (Carousel Bootstrap) -->
+  <div class="position-relative">
+    <div id="carouselBanner" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="Image/OIP.webp" class="d-block w-100" alt="Banner 1">
+        </div>
+        <div class="carousel-item">
+          <img src="Image/banner2.jpg" class="d-block w-100" alt="Banner 2">
+        </div>
+        <div class="carousel-item">
+          <img src="Image/banner3.jpg" class="d-block w-100" alt="Banner 3">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselBanner" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true" style="filter: invert(1);"></span>
+        <span class="visually-hidden">Sebelumnya</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselBanner" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true" style="filter: invert(1);"></span>
+        <span class="visually-hidden">Berikutnya</span>
+      </button>
+    </div>
+    <div class="hero-overlay d-none d-md-block"></div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main class="container my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="h4 text-primary fw-bold mb-0">Rekomendasi Produk</h2>
+      <div class="d-none d-md-block">
+        <span class="pill">Promo Hari Ini</span>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <!-- Product 1 -->
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="card produk-card h-100">
+          <img src="Image/produk1.jpg" alt="Hijab Batik Semi Sutra Aurora Olive" class="card-img-top">
+          <div class="card-body d-flex flex-column">
+            <div class="produk-title">Hijab Batik Semi Sutra Aurora Olive Heritage</div>
+            <div class="mt-2 mb-3">
+              <div class="price">Rp89.999</div>
+            </div>
+            <div class="mt-auto d-flex gap-2">
+              <button class="btn btn-beli w-100"
+                data-name="Hijab Batik Semi Sutra Aurora Olive Heritage"
+                data-price="89999"
+                data-img="Image/produk1.jpg">BELI</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="card produk-card h-100">
+          <img src="Image/produk2.jpg" alt="Hijab Batik Semi Sutra Sagara Golden Serenity" class="card-img-top">
+          <div class="card-body d-flex flex-column">
+            <div class="produk-title">Hijab Batik Semi Sutra Sagara Golden Serenity</div>
+            <div class="mt-2 mb-3"><div class="price">Rp89.999</div></div>
+            <div class="mt-auto d-flex gap-2">
+              <button class="btn btn-beli w-100"
+                data-name="Hijab Batik Semi Sutra Sagara Golden Serenity"
+                data-price="89999"
+                data-img="Image/produk2.jpg">BELI</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="card produk-card h-100">
+          <img src="Image/produk3.jpg" alt="Hijab Batik Semi Sutra Luna Ivory Grace" class="card-img-top">
+          <div class="card-body d-flex flex-column">
+            <div class="produk-title">Hijab Batik Semi Sutra Luna Ivory Grace</div>
+            <div class="mt-2 mb-3"><div class="price">Rp89.999</div></div>
+            <div class="mt-auto d-flex gap-2">
+              <button class="btn btn-beli w-100"
+                data-name="Hijab Batik Semi Sutra Luna Ivory Grace"
+                data-price="89999"
+                data-img="Image/produk3.jpg">BELI</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="card produk-card h-100">
+          <img src="Image/produk4.jpg" alt="Hijab Batik Semi Sutra Choco Royal Essence" class="card-img-top">
+          <div class="card-body d-flex flex-column">
+            <div class="produk-title">Hijab Batik Semi Sutra Choco Royal Essence</div>
+            <div class="mt-2 mb-3"><div class="price">Rp89.999</div></div>
+            <div class="mt-auto d-flex gap-2">
+              <button class="btn btn-beli w-100"
+                data-name="Hijab Batik Semi Sutra Choco Royal Essence"
+                data-price="89999"
+                data-img="Image/produk4.jpg">BELI</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 5 -->
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="card produk-card h-100">
+          <img src="Image/produk5.jpg" alt="Hijab Batik Semi Sutra Noir Batik Majesty" class="card-img-top">
+          <div class="card-body d-flex flex-column">
+            <div class="produk-title">Hijab Batik Semi Sutra Noir Batik Majesty</div>
+            <div class="mt-2 mb-3"><div class="price">Rp89.999</div></div>
+            <div class="mt-auto d-flex gap-2">
+              <button class="btn btn-beli w-100"
+                data-name="Hijab Batik Semi Sutra Noir Batik Majesty"
+                data-price="89999"
+                data-img="Image/produk5.jpg">BELI</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 6 -->
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="card produk-card h-100">
+          <img src="Image/produk6.jpg" alt="Hijab Batik Semi Sutra Violet Harmony Bloom" class="card-img-top">
+          <div class="card-body d-flex flex-column">
+            <div class="produk-title">Hijab Batik Semi Sutra Violet Harmony Bloom</div>
+            <div class="mt-2 mb-3"><div class="price">Rp89.999</div></div>
+            <div class="mt-auto d-flex gap-2">
+              <button class="btn btn-beli w-100"
+                data-name="Hijab Batik Semi Sutra Violet Harmony Bloom"
+                data-price="89999"
+                data-img="Image/produk6.jpg">BELI</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 7 (Kemeja Batik) -->
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="card produk-card h-100">
+          <img src="Image/produk7.jpg" alt="Kemeja Batik Pria Lengan Panjang Parang" class="card-img-top">
+          <div class="card-body d-flex flex-column">
+            <div class="produk-title">Kemeja Batik Pria Lengan Panjang Parang</div>
+            <div class="mt-2 mb-3"><div class="price">Rp199.999</div></div>
+            <div class="mt-auto d-flex gap-2">
+              <button class="btn btn-beli w-100"
+                data-name="Kemeja Batik Pria Lengan Panjang Parang"
+                data-price="199999"
+                data-img="Image/produk7.jpg">BELI</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 8 (Dress) -->
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="card produk-card h-100">
+          <img src="Image/produk8.jpg" alt="Dress Batik Wanita Klasik Megamendung" class="card-img-top">
+          <div class="card-body d-flex flex-column">
+            <div class="produk-title">Dress Batik Wanita Klasik Megamendung</div>
+            <div class="mt-2 mb-3"><div class="price">Rp249.999</div></div>
+            <div class="mt-auto d-flex gap-2">
+              <button class="btn btn-beli w-100"
+                data-name="Dress Batik Wanita Klasik Megamendung"
+                data-price="249999"
+                data-img="Image/produk8.jpg">BELI</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 9 (Tas) -->
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="card produk-card h-100">
+          <img src="Image/produk9.jpg" alt="Tas Selempang Kanvas Motif Kawung" class="card-img-top">
+          <div class="card-body d-flex flex-column">
+            <div class="produk-title">Tas Selempang Kanvas Motif Kawung</div>
+            <div class="mt-2 mb-3"><div class="price">Rp449.999</div></div>
+            <div class="mt-auto d-flex gap-2">
+              <button class="btn btn-beli w-100"
+                data-name="Tas Selempang Kanvas Motif Kawung"
+                data-price="449999"
+                data-img="Image/produk9.jpg">BELI</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div> <!-- /row -->
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container py-5">
+      <div class="row gy-4">
+        <div class="col-md-4">
+          <h5>About</h5>
+          <p style="max-width:320px;">Batik Nusantara — koleksi batik & hijab berkualitas, desain tradisi yang dibawa modern untuk penampilan sehari-hari.</p>
+          <p class="mb-0"><small>Opening hours: Mon - Sat, 08:00 - 17:00</small></p>
+        </div>
+
+        <div class="col-md-4">
+          <h5>Kontak</h5>
+          <p class="mb-1">Email: <a href="mailto:batiknusantara@gmail.com" style="color:#fff;">batiknusantara@gmail.com</a></p>
+          <p class="mb-1">WA: <a href="https://wa.me/628123456789" style="color:#fff;">08123456789</a></p>
+          <p class="mb-0">Alamat: Jl. Batik No.10, Kota Purwokerto</p>
+        </div>
+
+        <div class="col-md-4">
+          <h5>Ikuti Kami</h5>
+          <p class="mb-2">Dapatkan promo & update lewat sosial media:</p>
+          <a class="btn btn-sm btn-outline-light me-2" href="#" role="button">Facebook</a>
+          <a class="btn btn-sm btn-outline-light me-2" href="#" role="button">Instagram</a>
+          <a class="btn btn-sm btn-outline-light" href="#" role="button">Twitter</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom text-center py-3">
+      <div class="container">
+        <small>© 2025 Batik Nusantara | Pemrograman Web - Rifqi Ramdani | Semua Hak Dilindungi.</small>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== Modal: Tambah ke Keranjang / Konfirmasi ===== -->
+  <div class="modal fade" id="modalBeli" tabindex="-1" aria-labelledby="modalBeliLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header" style="background: linear-gradient(90deg,var(--purple-500),var(--accent)); color:#fff;">
+          <h5 class="modal-title" id="modalBeliLabel">Tambah ke Keranjang</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="d-flex gap-3">
+            <img id="modalProductImg" src="Image/produk1.jpg" alt="produk" class="modal-product-img">
+            <div>
+              <h6 id="modalProductName" class="mb-1">Nama Produk</h6>
+              <div id="modalProductPrice" class="text-muted mb-2">Rp0</div>
+              <p class="small text-muted mb-0">Pastikan produk yang akan Anda beli sudah benar. Klik "Tambah ke Keranjang" untuk melanjutkan.</p>
+            </div>
+          </div>
+          <hr>
+          <div class="mb-2">
+            <label for="qty" class="form-label">Jumlah</label>
+            <input id="qty" type="number" min="1" value="1" class="form-control" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+          <button type="button" id="confirmAddBtn" class="btn btn-beli">Tambah ke Keranjang</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast (notif kecil) -->
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index:12000;">
+    <div id="toastCart" class="toast align-items-center text-bg-dark border-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body">Produk ditambahkan ke keranjang.</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // ----- Helper: format number to Rp string -----
+    function formatRupiah(number) {
+      if (isNaN(number)) return 'Rp0';
+      return 'Rp' + number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    }
+
+    // ----- CART (localStorage) KEY -----
+    const CART_KEY = 'batik_cart_v1';
+
+    // ----- Read cart from localStorage -----
+    function loadCart() {
+      try {
+        const raw = localStorage.getItem(CART_KEY);
+        if (!raw) return [];
+        return JSON.parse(raw);
+      } catch (e) {
+        console.error('Error parsing cart from localStorage', e);
+        return [];
+      }
+    }
+
+    // ----- Save cart to localStorage -----
+    function saveCart(cart) {
+      localStorage.setItem(CART_KEY, JSON.stringify(cart));
+      updateCartBadge();
+    }
+
+    // ----- Update cart badge count -----
+    function updateCartBadge() {
+      const cart = loadCart();
+      const totalItems = cart.reduce((sum, item) => sum + (item.qty || 0), 0);
+      const badge = document.getElementById('cartCount');
+      if (badge) badge.textContent = totalItems;
+    }
+
+    // ----- Add product to cart (merge if same name+price) -----
+    function addToCart(product) {
+      const cart = loadCart();
+      // find existing item (same name + price)
+      const idx = cart.findIndex(it => it.name === product.name && it.price === product.price && it.img === product.img);
+      if (idx > -1) {
+        cart[idx].qty = (cart[idx].qty || 0) + product.qty;
+      } else {
+        cart.push(product);
+      }
+      saveCart(cart);
+    }
+
+    // ----- DOM & modal logic -----
+    (function(){
+      const modalEl = document.getElementById('modalBeli');
+      const modal = new bootstrap.Modal(modalEl);
+      const modalProductName = document.getElementById('modalProductName');
+      const modalProductPrice = document.getElementById('modalProductPrice');
+      const modalProductImg = document.getElementById('modalProductImg');
+      const qtyInput = document.getElementById('qty');
+      const confirmAddBtn = document.getElementById('confirmAddBtn');
+      const toastEl = document.getElementById('toastCart');
+      const toast = new bootstrap.Toast(toastEl, { delay: 2500 });
+
+      // Initialize badge on page load
+      updateCartBadge();
+
+      // When a BUY button is clicked, show modal with details
+      document.querySelectorAll('.btn-beli').forEach(btn => {
+        btn.addEventListener('click', function(){
+          const name = this.dataset.name || 'Produk';
+          const price = Number(this.dataset.price) || 0;
+          const img = this.dataset.img || 'Image/produk1.jpg';
+          modalProductImg.src = img;
+          modalProductName.textContent = name;
+          modalProductPrice.textContent = formatRupiah(price);
+          qtyInput.value = 1;
+          // store current product data on confirm button for later
+          confirmAddBtn.dataset.name = name;
+          confirmAddBtn.dataset.price = price;
+          confirmAddBtn.dataset.img = img;
+          modal.show();
+        });
+      });
+
+      // Confirm add to cart from modal
+      confirmAddBtn.addEventListener('click', function(){
+        const name = this.dataset.name;
+        const price = Number(this.dataset.price) || 0;
+        const img = this.dataset.img;
+        const qty = Math.max(1, Number(qtyInput.value || 1));
+        const product = {
+          name: name,
+          price: price,
+          img: img,
+          qty: qty
+        };
+        addToCart(product);
+        modal.hide();
+        // show toast with message
+        toastEl.querySelector('.toast-body').textContent = `${qty} × ${name} berhasil ditambahkan ke keranjang.`;
+        toast.show();
+      });
+
+      // Accessibility: focus back to first buy button after modal closes
+      modalEl.addEventListener('hidden.bs.modal', function () {
+        const firstBtn = document.querySelector('.btn-beli');
+        if (firstBtn) firstBtn.focus();
+      });
+
+      // Optional: when clicking cart link, navigate to keranjang.html (existing page)
+      const cartLink = document.getElementById('cartLink');
+      if (cartLink) {
+        cartLink.addEventListener('click', function(e){
+          // default behavior is to navigate to keranjang.html via href
+          // no extra action needed, but we can update badge right before leaving
+          updateCartBadge();
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
