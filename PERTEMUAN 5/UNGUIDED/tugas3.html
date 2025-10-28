@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Tugas 3 - jQuery Medium</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <button id="ubah">Klik Saya</button>
+  <p id="pesan">Teks awal paragraf.</p>
+
+  <script>
+    $("#ubah").click(function() {
+      $("#pesan").text("Tombol sudah diklik!").css("color", "red");
+    });
+  </script>
+</body>
+</html>
