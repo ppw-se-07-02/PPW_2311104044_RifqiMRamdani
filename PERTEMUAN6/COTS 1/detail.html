@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail Produk - TechStore</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      min-height: 100vh;
+    }
+    .navbar {
+      background: rgba(255,255,255,0.95);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .navbar-brand { font-weight: 700; color: #2563eb !important; }
+    .detail-container {
+      background: white;
+      border-radius: 25px;
+      padding: 40px;
+      margin-top: 40px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    }
+    .product-title { font-size: 2rem; font-weight: 700; color: #1f2937; }
+    .product-price { font-size: 1.8rem; font-weight: 700; color: #2563eb; }
+    .product-desc { color: #4b5563; line-height: 1.7; margin-top: 15px; }
+    .btn-add-cart {
+      background: #2563eb; border: none; color: white;
+      font-weight: 600; width: 100%; border-radius: 15px;
+      padding: 15px; transition: all 0.3s ease;
+    }
+    .btn-add-cart:hover {
+      background: #1e40af; transform: translateY(-2px);
+    }
+    .specifications {
+      background: #f9fafb; border-radius: 15px;
+      padding: 25px; margin-top: 30px;
+    }
+    .spec-item {
+      display: flex; justify-content: space-between;
+      border-bottom: 1px solid #e5e7eb; padding: 10px 0;
+    }
+    .recommendation {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 25px;
+      margin-top: 40px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+    .recommend-card {
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .recommend-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    .recommend-card img {
+      height: 160px;
+      object-fit: cover;
+    }
+    footer {
+      background: white;
+      margin-top: 60px;
+      padding: 30px;
+      border-radius: 20px 20px 0 0;
+      box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html"><i class="bi bi-shop"></i> TechStore</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto align-items-center">
+        <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
+        <li class="nav-item"><a class="nav-link" href="#produk">Produk</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
+        <li class="nav-item ms-2">
+          <button class="btn btn-outline-primary position-relative">
+            <i class="bi bi-cart3"></i>
+            <span class="badge bg-warning text-dark position-absolute top-0 start-100 translate-middle">0</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <div class="container">
+    <div class="detail-container" data-aos="fade-up">
+      <div class="row align-items-center">
+        <div class="col-md-6 text-center">
+          <img id="productImage" src="" alt="Product Image" class="img-fluid rounded shadow">
+        </div>
+        <div class="col-md-6">
+          <h2 id="productName" class="product-title"></h2>
+          <p id="productPrice" class="product-price"></p>
+          <p id="productDescription" class="product-desc"></p>
+          <button class="btn btn-add-cart mt-3" id="addToCartBtn">
+            <i class="bi bi-cart-plus"></i> Tambah ke Keranjang
+          </button>
+        </div>
+      </div>
+
+      <div class="specifications mt-4">
+        <h5 class="fw-bold mb-3"><i class="bi bi-cpu"></i> Spesifikasi Produk</h5>
+        <div id="specList"></div>
+      </div>
+
+      <!-- ===== Rekomendasi Produk ===== -->
+      <div class="recommendation mt-5">
+        <h5 class="fw-bold mb-3"><i class="bi bi-stars"></i> Rekomendasi Produk Lain</h5>
+        <div class="row g-4" id="recommendList"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="custom-toast" id="toastMsg" style="display:none; position:fixed; top:80px; right:20px; background:white; padding:20px; border-left:5px solid #10b981; border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,0.2); z-index:9999;">
+    <i class="bi bi-check-circle-fill text-success me-2"></i> <span id="toastText"></span>
+  </div>
+
+  <footer>
+    <p class="mb-0 text-muted">© 2025 <strong>TechStore</strong> — Semua Hak Dilindungi</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800 });
+
+    const products = {
+      iphone14: { name:"iPhone 14 Pro Max", price:"Rp 21.999.000", image:"assets/img/iphone14.jpg", desc:"iPhone 14 Pro Max hadir dengan chip A16 Bionic dan kamera 48MP.", specs:{Chipset:"A16 Bionic", Layar:'6.7" Super Retina XDR', Kamera:"48MP + 12MP + 12MP", RAM:"6GB", Penyimpanan:"256GB", Baterai:"4323 mAh"} },
+      iphone15: { name:"iPhone 15 Pro Max", price:"Rp 24.999.000", image:"assets/img/iphone15.jpg", desc:"Ditenagai chip A17 Pro dengan kamera 48MP dan titanium body tangguh.", specs:{Chipset:"A17 Pro", Layar:'6.7" OLED 120Hz', Kamera:"48MP + 12MP + 12MP", RAM:"8GB", Penyimpanan:"256GB", Baterai:"4422 mAh"} },
+      iphone16: { name:"iPhone 16 Pro Max", price:"Rp 27.499.000", image:"assets/img/iphone16.jpg", desc:"iPhone 16 hadir dengan desain layar penuh tanpa notch dan AI Camera.", specs:{Chipset:"A18 Bionic", Layar:'6.8" Super Retina XDR', Kamera:"64MP + 48MP + 12MP", RAM:"12GB", Penyimpanan:"512GB", Baterai:"4700 mAh"} },
+      iphone17: { name:"iPhone 17 Pro Max", price:"Rp 34.999.000", image:"assets/img/iphone17.jpg", desc:"iPhone 17 Ultra membawa prosesor Neural Quantum dan kamera 100x zoom.", specs:{Chipset:"A19 Quantum", Layar:'6.9" ProMotion LTPO', Kamera:"108MP + 48MP + 12MP", RAM:"16GB", Penyimpanan:"1TB", Baterai:"5000 mAh"} },
+      macbook: { name:"MacBook Pro M3", price:"Rp 28.999.000", image:"assets/img/macbook.jpg", desc:"MacBook Pro M3 menawarkan efisiensi dan performa luar biasa.", specs:{Chipset:"Apple M3", Layar:'14.2" Liquid Retina XDR', RAM:"16GB Unified", Penyimpanan:"512GB SSD", GPU:"18-core GPU", Baterai:"18 jam"} },
+      airpods: { name:"AirPods Pro 2nd Gen USB-C", price:"Rp 3.799.000", image:"assets/img/airpods.jpg", desc:"AirPods Pro generasi ke-2 dengan chip H2 dan Active Noise Cancellation.", specs:{Chip:"Apple H2", Audio:"Adaptive Audio", ANC:"Active Noise Cancellation", Baterai:"6 jam (30 jam total)", Case:"USB-C MagSafe", KetahananAir:"IPX4"} },
+      samsung: { name:"Samsung Galaxy S25 Ultra", price:"Rp 18.999.000", image:"assets/img/samsung.jpg", desc:"Galaxy S25 Ultra dengan kamera 200MP dan S-Pen terintegrasi.", specs:{Chipset:"Snapdragon 8 Gen 3", Layar:'6.8" QHD+ AMOLED 120Hz', Kamera:"200MP + 50MP + 12MP + 10MP", RAM:"12GB", Penyimpanan:"512GB", Baterai:"5000 mAh"} },
+      applewatch: { name:"Apple Watch Series 9 GPS 45mm", price:"Rp 6.299.000", image:"assets/img/watch.jpg", desc:"Apple Watch S9 dengan kontrol gestur Double Tap dan fitur kesehatan.", specs:{Chip:"Apple S9 SiP", Layar:"45mm LTPO OLED", Sensor:"ECG, Blood Oxygen", Konektivitas:"Bluetooth 5.3, Wi-Fi, GPS", KetahananAir:"50 meter", Baterai:"18 jam"} }
+    };
+
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    // === Rekomendasi Produk Dinamis ===
+    function loadRecommendations(currentId) {
+      const allKeys = Object.keys(products);
+      const others = allKeys.filter(k => k !== currentId).slice(0, 4);
+      $("#recommendList").html("");
+      others.forEach(id => {
+        const p = products[id];
+        $("#recommendList").append(`
+          <div class="col-sm-6 col-md-3">
+            <div class="card recommend-card">
+              <img src="${p.image}" class="card-img-top" alt="${p.name}">
+              <div class="card-body text-center">
+                <h6 class="fw-semibold">${p.name}</h6>
+                <p class="text-primary fw-bold small">${p.price}</p>
+                <a href="detail.html?id=${id}" class="btn btn-outline-primary btn-sm w-100">
+                  <i class="bi bi-eye"></i> Lihat
+                </a>
+              </div>
+            </div>
+          </div>
+        `);
+      });
+    }
+
+    $(function(){
+      const id = getQueryParam("id");
+      const p = products[id];
+      if(p){
+        $("#productImage").attr("src",p.image);
+        $("#productName").text(p.name);
+        $("#productPrice").text(p.price);
+        $("#productDescription").text(p.desc);
+        let spec="";
+        for(const [k,v] of Object.entries(p.specs))
+          spec+=`<div class="spec-item"><span>${k}</span><span>${v}</span></div>`;
+        $("#specList").html(spec);
+        loadRecommendations(id);
+        $("#addToCartBtn").click(()=>{
+          $("#toastText").text(`${p.name} ditambahkan ke keranjang`);
+          $("#toastMsg").fadeIn(300).delay(2000).fadeOut(300);
+        });
+      } else {
+        $(".detail-container").html("<h3 class='text-center text-danger'>Produk tidak ditemukan</h3>");
+      }
+    });
+  </script>
+</body>
+</html>

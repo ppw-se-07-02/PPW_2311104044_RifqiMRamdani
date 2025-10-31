@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TechStore - Beranda</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    min-height: 100vh;
+  }
+  .navbar {
+    background: rgba(255,255,255,0.95);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+  .navbar-brand { font-weight: 700; color: #2563eb !important; }
+  .nav-link { color: #1f2937 !important; font-weight: 500; }
+  .nav-link:hover { color: #2563eb !important; }
+
+  /* === SEARCH BAR === */
+  .search-container {
+    background: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    margin-bottom: 40px;
+  }
+  .search-box {
+    position: relative;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  .search-box input {
+    border-radius: 25px;
+    padding-left: 40px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.05);
+  }
+  .search-box .bi-search {
+    position: absolute;
+    left: 12px;
+    top: 10px;
+    color: gray;
+  }
+
+  /* === Carousel Banner === */
+  .carousel-item img {
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: 25px;
+  }
+  .carousel-caption {
+    background: rgba(0,0,0,0.55);
+    border-radius: 15px;
+    padding: 20px;
+  }
+
+  .hero {
+    background: white;
+    padding: 50px;
+    margin-top: 40px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  }
+
+  .product-card {
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    background: #fff;
+  }
+  .product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+  }
+  .product-card img {
+    height: 220px;
+    object-fit: cover;
+  }
+  .btn-add-cart {
+    background: #2563eb;
+    border: none;
+    width: 100%;
+    font-weight: 600;
+  }
+  .btn-add-cart:hover { background: #1e40af; }
+
+  .custom-toast {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    background: white;
+    border-left: 5px solid #10b981;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    display: none;
+    animation: slideIn 0.4s ease;
+    z-index: 9999;
+  }
+
+  @keyframes slideIn {
+    from { transform: translateX(300px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+
+  footer {
+    background: white;
+    margin-top: 60px;
+    padding: 30px;
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html"><i class="bi bi-shop"></i> TechStore</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto align-items-center">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Beranda</a></li>
+        <li class="nav-item"><a class="nav-link" href="#produk">Produk</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
+        <li class="nav-item ms-3">
+          <button class="btn btn-outline-primary position-relative">
+            <i class="bi bi-cart3"></i>
+            <span class="badge bg-warning text-dark position-absolute top-0 start-100 translate-middle" id="cartCount">0</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== CAROUSEL ===== -->
+<div class="container mt-4">
+  <div id="mainCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active"></button>
+      <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1"></button>
+      <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2"></button>
+    </div>
+    <div class="carousel-inner rounded-4 shadow" data-aos="fade-up">
+      <div class="carousel-item active">
+        <img src="assets/img/banner1.jpg" class="d-block w-100" alt="Banner 1">
+        <div class="carousel-caption d-none d-md-block">
+          <h3>iPhone 17 Pro Max</h3>
+          <p>Teknologi masa depan di genggaman Anda.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="assets/img/banner2.jpg" class="d-block w-100" alt="Banner 2">
+        <div class="carousel-caption d-none d-md-block">
+          <h3>MacBook Pro M3</h3>
+          <p>Performa super untuk para kreator.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="assets/img/banner3.jpg" class="d-block w-100" alt="Banner 3">
+        <div class="carousel-caption d-none d-md-block">
+          <h3>Samsung Galaxy S25 Ultra</h3>
+          <p>Kamera 200MP dan S-Pen terintegrasi.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SEARCH BAR DI ATAS PRODUK ===== -->
+<div class="container">
+  <div class="search-container" data-aos="fade-up">
+    <h4 class="fw-semibold mb-3 text-center"><i class="bi bi-search"></i> Cari Produk</h4>
+    <div class="search-box">
+      <i class="bi bi-search"></i>
+      <input type="text" id="searchInput" class="form-control" placeholder="Ketik nama produk...">
+    </div>
+  </div>
+</div>
+
+<!-- ===== PRODUK TERBARU ===== -->
+<div class="container" id="produk">
+  <div class="hero" data-aos="fade-up">
+    <h1 class="fw-bold text-primary mb-3"><i class="bi bi-lightning-charge-fill"></i> Produk Terbaru</h1>
+    <p class="text-muted mb-4">Temukan gadget terbaik dengan teknologi terkini</p>
+    <div class="row g-4" id="productList"></div>
+  </div>
+</div>
+
+<!-- ===== PRODUK TERLARIS ===== -->
+<div class="container">
+  <div class="hero mt-5" data-aos="fade-up">
+    <h2 class="fw-bold text-success mb-3"><i class="bi bi-stars"></i> Produk Terlaris</h2>
+    <p class="text-muted mb-4">Pilihan terbaik dari pelanggan kami</p>
+    <div class="row g-4" id="bestSeller"></div>
+  </div>
+</div>
+
+<div class="custom-toast" id="toastMsg">
+  <i class="bi bi-check-circle-fill text-success fs-4 me-2"></i> <span id="toastText"></span>
+</div>
+
+<footer>
+  <p class="mb-0 text-muted">© 2025 <strong>TechStore</strong> — Semua Hak Dilindungi</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+AOS.init({ duration: 800 });
+
+const products = [
+  { id:"iphone14", name:"iPhone 14 Pro Max", price:"Rp 21.999.000", image:"assets/img/iphone14.jpg" },
+  { id:"iphone15", name:"iPhone 15 Pro Max", price:"Rp 24.999.000", image:"assets/img/iphone15.jpg" },
+  { id:"iphone16", name:"iPhone 16 Pro Max", price:"Rp 27.499.000", image:"assets/img/iphone16.jpg" },
+  { id:"iphone17", name:"iPhone 17 Pro Max", price:"Rp 34.999.000", image:"assets/img/iphone17.jpg" },
+  { id:"macbook", name:"MacBook Pro M3", price:"Rp 28.999.000", image:"assets/img/macbook.jpg" },
+  { id:"airpods", name:"AirPods Pro 2 Series", price:"Rp 3.799.000", image:"assets/img/airpods.jpg" },
+  { id:"samsung", name:"Samsung Galaxy S25", price:"Rp 18.999.000", image:"assets/img/samsung.jpg" },
+  { id:"applewatch", name:"Apple Watch Series 9", price:"Rp 6.299.000", image:"assets/img/watch.jpg" }
+];
+
+const bestSellerIds = ["iphone17", "macbook", "samsung", "airpods"];
+
+function renderProducts(list, containerId) {
+  $("#" + containerId).html("");
+  list.forEach(p => {
+    $("#" + containerId).append(`
+      <div class="col-sm-6 col-md-4 col-lg-3 product-item" data-name="${p.name.toLowerCase()}" data-aos="fade-up">
+        <div class="card product-card">
+          <img src="${p.image}" class="card-img-top" alt="${p.name}">
+          <div class="card-body text-center">
+            <h5 class="fw-semibold">${p.name}</h5>
+            <p class="text-primary fw-bold">${p.price}</p>
+            <a href="detail.html?id=${p.id}" class="btn btn-outline-primary w-100 mb-2">
+              <i class="bi bi-eye"></i> Detail
+            </a>
+            <button class="btn btn-add-cart text-white" data-name="${p.name}">
+              <i class="bi bi-cart-plus"></i> Tambah
+            </button>
+          </div>
+        </div>
+      </div>
+    `);
+  });
+}
+
+$(document).ready(function () {
+  renderProducts(products, "productList");
+
+  const bestSellers = products.filter(p => bestSellerIds.includes(p.id));
+  renderProducts(bestSellers, "bestSeller");
+
+  let cartCount = 0;
+  $(document).on("click", ".btn-add-cart", function() {
+    const name = $(this).data("name");
+    cartCount++;
+    $("#cartCount").text(cartCount);
+    $("#toastText").text(`${name} ditambahkan ke keranjang`);
+    $("#toastMsg").fadeIn(300).delay(2000).fadeOut(300);
+  });
+
+  // ==== FUNGSI PENCARIAN ====
+  $("#searchInput").on("keyup", function() {
+    const keyword = $(this).val().toLowerCase();
+    $(".product-item").filter(function() {
+      $(this).toggle($(this).data("name").includes(keyword));
+    });
+  });
+});
+</script>
+</body>
+</html>
